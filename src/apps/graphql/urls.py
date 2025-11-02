@@ -1,9 +1,9 @@
 from django.urls import path
 
 from . import views
-from .schema import user_schema
+from .schema import schema
 
 urlpatterns = [
-    path("", views.HomeView.as_view(graphiql=True, schema=user_schema)),
+    path("", views.SchemaView.as_view(graphiql=True, schema=schema)),
     path("csrf_token/", views.CSRFView.as_view()),
 ]

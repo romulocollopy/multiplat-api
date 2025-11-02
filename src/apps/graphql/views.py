@@ -4,7 +4,7 @@ from graphene_django.views import GraphQLView
 from django.middleware.csrf import get_token
 
 
-class HomeView(GraphQLView): ...
+class SchemaView(GraphQLView): ...
 
 
 class CSRFView(View):

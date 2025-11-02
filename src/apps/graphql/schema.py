@@ -15,4 +15,4 @@ class Query(graphene.ObjectType):
         return {"id": "user_123", "name": "Test User", "email": "test@example.com"}
 
 
-user_schema = graphene.Schema(query=Query)
+schema = graphene.Schema(query=Query)
