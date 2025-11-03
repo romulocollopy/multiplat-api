@@ -18,8 +18,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from src.apps.graphql import urls as gq_urls
+from src.apps.core import urls as core_urls
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("graphql/", include(gq_urls)),
+    path("/", include(core_urls)),
 ]
