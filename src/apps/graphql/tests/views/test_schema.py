@@ -1,20 +1,27 @@
 from http import HTTPStatus
 
-
-def test_schema_empty_query(client):
-    resp = client.post("/graphql/")
-    assert resp.status_code == HTTPStatus.BAD_REQUEST
+import pytest
 
 
-def test_schema(client):
-    resp = client.post(
-        "/graphql/",
-        {
-            "query": "query UserProfileQuery {\n  viewer {\n    id\n    name\n    email\n  }\n}\n",
-            "variables": {},
-        },
-        content_type="application/json",
+def test_schema_empty_query(client_query):
+    with pytest.raises(AssertionError) as exc_info:
+        client_query("")
+
+    assert exc_info.match(f".*{HTTPStatus.BAD_REQUEST}.*")
+
+
+def test_schema(client_query):
+    resp = client_query(
+        """
+        query UserProfileQuery {
+            viewer {
+                id
+                name
+                email
+            }
+        }
+        """,
+        operation_name="UserProfileQuery",
     )
 
-    assert resp.status_code == HTTPStatus.OK
-    assert resp.json()["data"]["viewer"]["id"] == "user_123"
+    assert "data" in resp

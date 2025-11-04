@@ -1,5 +1,4 @@
 from graphene_django.views import GraphQLView
 
 
-class SchemaView(GraphQLView):
-    pass
+class SchemaView(GraphQLView): ...

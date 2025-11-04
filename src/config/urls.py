@@ -23,5 +23,5 @@ from src.apps.core import urls as core_urls
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("graphql/", include(gq_urls)),
-    path("/", include(core_urls)),
+    path("", include(core_urls)),
 ]
